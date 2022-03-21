@@ -24,7 +24,7 @@ namespace KT_1.Model
             set { m_Fabrics = value.ToList(); }
         }
 
-        public IEnumerable<Accessory> Accessories
+        public IEnumerable<ProductAccessory> Accessories
         {
             get { return m_Accessories; }
             set { m_Accessories = value.ToList(); }
@@ -45,12 +45,12 @@ namespace KT_1.Model
         {
             m_Composition = new List<string>();
             m_Fabrics = new List<Fabric>();
-            m_Accessories = new List<Accessory>();
+            m_Accessories = new List<ProductAccessory>();
         }
 
         public Product(int articul, string name, double width, double height, string texture, 
             IEnumerable<string> composition, string laundryCare, IEnumerable<Fabric> fabrics,
-            IEnumerable<Accessory> accessories)
+            IEnumerable<ProductAccessory> accessories)
         {
             Articul = articul;
             Name = name;
@@ -75,7 +75,7 @@ namespace KT_1.Model
 
 
         private List<Fabric> m_Fabrics;
-        private List<Accessory> m_Accessories;
+        private List<ProductAccessory> m_Accessories;
 
         private List<string> m_Composition;
     }
