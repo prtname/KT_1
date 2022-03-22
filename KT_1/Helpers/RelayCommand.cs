@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace KT_1.Helpers
 {
-    internal class RelayCommand : ICommand
+    public class RelayCommand : ICommand
     {
         public event EventHandler CanExecuteChanged
         {
