@@ -63,6 +63,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DataAccessLayer\ProductRepository.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -71,8 +72,10 @@
   <ItemGroup>
     <Compile Include="Model\Accessory.cs" />
     <Compile Include="Model\Fabric.cs" />
+    <Compile Include="Model\Order.cs" />
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\ProductAccessory.cs" />
+    <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
