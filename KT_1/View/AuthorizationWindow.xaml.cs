@@ -32,5 +32,10 @@ namespace KT_1.View
             this.DataContext = viewModel;
             return this.ShowDialog();
         }
+
+        public void CloseDialog(bool dialogResult)
+        {
+            DialogResult = dialogResult;
+        }
     }
 }
