@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KT_1.Model
 {
-    internal class User
+    public class User
     {
         public string Login { get; private set; }
         public string Password { get; private set; }
