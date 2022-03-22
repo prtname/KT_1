@@ -43,17 +43,20 @@ namespace KT_1.ViewModel
         public AuthorizationViewModel(DialogView<AuthorizationViewModel> view)
         {
             m_AuthCommand = new RelayCommand(Auth);
+            m_View = view;
 
-            DialogResult = view.ShowDialog(this);
+            DialogResult = m_View.ShowDialog(this);
         }
 
         private void Auth(object parameter)
         {
+            m_View.CloseDialog(true);
         }
 
 
         private string m_Login;
         private string m_Password;
+        private DialogView<AuthorizationViewModel> m_View;
 
         private RelayCommand m_AuthCommand;
     }
