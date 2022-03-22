@@ -19,6 +19,11 @@ namespace KT_1.DataAccessLayer
             return m_Users[new LoginPassword(login, password)];
         }
 
+        public bool HasUserWithLoginPassword(string login, string password)
+        {
+            return m_Users.ContainsKey(new LoginPassword(login,password));
+        }
+
         private struct LoginPassword
         {
             public LoginPassword(string login, string password)
