@@ -12,11 +12,13 @@
             <Style TargetType="TextBox">
                 <Setter Property="MinWidth" Value="300"></Setter>
                 <Setter Property="Padding" Value="6"></Setter>
-                <Setter Property="Margin" Value="0,10"></Setter>
+            </Style>
+            <Style TargetType="StackPanel">
+                <Setter Property="Margin" Value="0,20,0,0"></Setter>
             </Style>
         </StackPanel.Resources>
 
-        <TextBlock TextAlignment="Center" FontSize="24" Margin="0,0,0,30">Вход</TextBlock>
+        <TextBlock TextAlignment="Center" FontSize="24">Вход</TextBlock>
         <TextBlock x:Name="ErrorLabel" Text="{Binding Error}" Visibility="{Binding Error, Converter={converters:StringNullOrEmptyToVisibilityConverter}}">
             <TextBlock.Resources>
                 <Style TargetType="TextBlock">
@@ -25,8 +27,18 @@
             </TextBlock.Resources>
         </TextBlock>
 
-        <TextBox Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-        <TextBox Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <StackPanel>
+            <TextBlock>Логин:</TextBlock>
+            <TextBox Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        </StackPanel>
+        <StackPanel>
+            <TextBlock>Пароль:</TextBlock>
+            <TextBox Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        </StackPanel>
+
+        <TextBlock HorizontalAlignment="Center">
+            <Hyperlink>Создать аккаунт</Hyperlink>
+        </TextBlock>
 
         <Button Height="30" Margin="0,30,0,0" Command="{Binding AuthCommand}">Вход</Button>
     </StackPanel>
