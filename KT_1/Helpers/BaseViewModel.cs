@@ -7,7 +7,7 @@ using System.ComponentModel;
 
 namespace KT_1.Helpers
 {
-    internal abstract class BaseViewModel : INotifyPropertyChanged
+    public abstract class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KT_1.Helpers
 {
-    internal enum DialogResult
+    public enum DialogResult
     {
         None,
         Cancel,
