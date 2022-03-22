@@ -9,5 +9,6 @@ namespace KT_1.DataAccessLayer
     public interface DialogView<T>
     {
         bool? ShowDialog(T viewModel);
+        void CloseDialog(bool dialogResult);
     }
 }
