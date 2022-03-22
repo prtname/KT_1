@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DataAccessLayer\UserRepository.cs" />
     <Compile Include="Helpers\DialogView.cs" />
     <Compile Include="Helpers\RelayCommand.cs" />
     <Compile Include="ViewModel\AuthorizationViewModel.cs" />

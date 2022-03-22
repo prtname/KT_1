@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using KT_1.DataAccessLayer;
 using KT_1.Helpers;
+using KT_1.Model;
 
 namespace KT_1.ViewModel
 {
@@ -39,17 +40,22 @@ namespace KT_1.ViewModel
 
         public bool? DialogResult { get; private set; }
 
+        public User User { get; private set; }
 
-        public AuthorizationViewModel(DialogView<AuthorizationViewModel> view)
+
+        public AuthorizationViewModel(DialogView<AuthorizationViewModel> view, UserRepository userRepository)
         {
             m_AuthCommand = new RelayCommand(Auth);
             m_View = view;
+            m_UserRepository = userRepository;
 
             DialogResult = m_View.ShowDialog(this);
         }
 
         private void Auth(object parameter)
         {
+            this.User = m_UserRepository.GetUserWithLoginPassword(Login, Password);
+
             m_View.CloseDialog(true);
         }
 
@@ -57,6 +63,7 @@ namespace KT_1.ViewModel
         private string m_Login;
         private string m_Password;
         private DialogView<AuthorizationViewModel> m_View;
+        private UserRepository m_UserRepository;
 
         private RelayCommand m_AuthCommand;
     }
