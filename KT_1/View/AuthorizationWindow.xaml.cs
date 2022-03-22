@@ -1,4 +1,7 @@
-﻿using System;
+﻿using KT_1.DataAccessLayer;
+using KT_1.Helpers;
+using KT_1.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,11 +20,17 @@ namespace KT_1.View
     /// <summary>
     /// Логика взаимодействия для AuthorizationWindow.xaml
     /// </summary>
-    public partial class AuthorizationWindow : Window
+    public partial class AuthorizationWindow : Window, DialogView<AuthorizationViewModel>
     {
         public AuthorizationWindow()
         {
             InitializeComponent();
+        }
+
+        public bool? ShowDialog(AuthorizationViewModel viewModel)
+        {
+            this.DataContext = viewModel;
+            return this.ShowDialog();
         }
     }
 }
