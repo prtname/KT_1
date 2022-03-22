@@ -17,10 +17,16 @@
         </StackPanel.Resources>
 
         <TextBlock TextAlignment="Center" FontSize="24" Margin="0,0,0,30">Вход</TextBlock>
-        <TextBlock x:Name="ErrorLabel" Text="{Binding Error}" Visibility="{Binding Error, Converter={converters:StringNullOrEmptyToVisibilityConverter}}"></TextBlock>
+        <TextBlock x:Name="ErrorLabel" Text="{Binding Error}" Visibility="{Binding Error, Converter={converters:StringNullOrEmptyToVisibilityConverter}}">
+            <TextBlock.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="TextBlock.Foreground" Value="Red"></Setter>
+                </Style>
+            </TextBlock.Resources>
+        </TextBlock>
 
-        <TextBox Text="{Binding Login}"></TextBox>
-        <TextBox Text="{Binding Password}"></TextBox>
+        <TextBox Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <TextBox Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"></TextBox>
 
         <Button Height="30" Margin="0,30,0,0" Command="{Binding AuthCommand}">Вход</Button>
     </StackPanel>
