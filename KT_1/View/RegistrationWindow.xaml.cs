@@ -1,4 +1,6 @@
-﻿using System;
+﻿using KT_1.DataAccessLayer;
+using KT_1.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,11 +19,22 @@ namespace KT_1.View
     /// <summary>
     /// Логика взаимодействия для RegistrationWindow.xaml
     /// </summary>
-    public partial class RegistrationWindow : Window
+    public partial class RegistrationWindow : Window, DialogView<RegistrationViewModel>
     {
         public RegistrationWindow()
         {
             InitializeComponent();
+        }
+
+        public bool? ShowDialog(RegistrationViewModel viewModel)
+        {
+            this.DataContext = viewModel;
+            return this.ShowDialog();
+        }
+
+        public void CloseDialog(bool dialogResult)
+        {
+            DialogResult = dialogResult;
         }
     }
 }
