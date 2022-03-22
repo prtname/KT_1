@@ -42,28 +42,50 @@ namespace KT_1.ViewModel
 
         public User User { get; private set; }
 
+        public string Error
+        {
+            get { return m_Error; }
+            private set
+            {
+                m_Error = value;
+                OnPropertyChanged("Error");
+            }
+        }
+
 
         public AuthorizationViewModel(DialogView<AuthorizationViewModel> view, UserRepository userRepository)
         {
-            m_AuthCommand = new RelayCommand(Auth);
+            m_AuthCommand = new RelayCommand(CanAuth, Auth);
             m_View = view;
             m_UserRepository = userRepository;
 
             DialogResult = m_View.ShowDialog(this);
         }
 
+        private bool CanAuth(object parameter)
+        {
+            return !String.IsNullOrEmpty(Login) && !String.IsNullOrEmpty(Password);
+        }
+
         private void Auth(object parameter)
         {
-            this.User = m_UserRepository.GetUserWithLoginPassword(Login, Password);
+            if (!m_UserRepository.HasUserWithLoginPassword(Login, Password))
+            {
+                Error = "Неверный логин или пароль";
+                return;
+            }
 
+            this.User = m_UserRepository.GetUserWithLoginPassword(Login, Password);
             m_View.CloseDialog(true);
         }
+
 
 
         private string m_Login;
         private string m_Password;
         private DialogView<AuthorizationViewModel> m_View;
         private UserRepository m_UserRepository;
+        private string m_Error;
 
         private RelayCommand m_AuthCommand;
     }

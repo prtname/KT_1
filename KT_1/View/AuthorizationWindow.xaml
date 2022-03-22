@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KT_1.View"
+        xmlns:converters="clr-namespace:KT_1.Converters"
         mc:Ignorable="d"
         Title="AuthorizationWindow" Height="450" Width="800">
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -16,6 +17,7 @@
         </StackPanel.Resources>
 
         <TextBlock TextAlignment="Center" FontSize="24" Margin="0,0,0,30">Вход</TextBlock>
+        <TextBlock x:Name="ErrorLabel" Text="{Binding Error}" Visibility="{Binding Error, Converter={converters:StringNullOrEmptyToVisibilityConverter}}"></TextBlock>
 
         <TextBox Text="{Binding Login}"></TextBox>
         <TextBox Text="{Binding Password}"></TextBox>
