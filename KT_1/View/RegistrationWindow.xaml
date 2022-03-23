@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:KT_1.View"
         xmlns:converters="clr-namespace:KT_1.Converters"
         mc:Ignorable="d"
-        Title="RegistrationWindow" Height="450" Width="800">
+        Title="RegistrationWindow" Height="500" Width="800">
     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
         <StackPanel.Resources>
             <Style TargetType="TextBox">
@@ -29,29 +29,28 @@
         <TextBlock HorizontalAlignment="Center" FontSize="24">Создание аккаунта</TextBlock>
         <StackPanel>
             <TextBlock>Имя пользователя:</TextBlock>
-            <TextBox></TextBox>
+            <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         </StackPanel>
         <StackPanel>
             <TextBlock>Логин:</TextBlock>
-            <Border>
-                <TextBox></TextBox>
+            <Border BorderThickness="{Binding LoginError, Converter={converters:StringNullOrEmptyToBorderThicknessConverter}}">
+                <TextBox Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             </Border>
-            <TextBlock Style="{StaticResource ErrorLabel}"></TextBlock>
+            <TextBlock Text="{Binding LoginError}" Style="{StaticResource ErrorLabel}"></TextBlock>
         </StackPanel>
         <StackPanel>
             <TextBlock>Пароль:</TextBlock>
-            <Border>
-                <TextBox></TextBox>
+            <Border BorderThickness="{Binding PasswordError, Converter={converters:StringNullOrEmptyToBorderThicknessConverter}}">
+                <TextBox Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             </Border>
-            <TextBlock Style="{StaticResource ErrorLabel}"></TextBlock>
+            <TextBlock Text="{Binding PasswordError}" Style="{StaticResource ErrorLabel}"></TextBlock>
         </StackPanel>
         <StackPanel>
             <TextBlock>Повторите пароль:</TextBlock>
-            <Border>
-                <TextBox></TextBox>
+            <Border BorderThickness="{Binding PasswordError, Converter={converters:StringNullOrEmptyToBorderThicknessConverter}}">
+                <TextBox Text="{Binding PasswordConfirmation, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             </Border>
-            <TextBlock Style="{StaticResource ErrorLabel}"></TextBlock>
         </StackPanel>
-        <Button Height="30" Margin="0,30,0,0">Создать</Button>
+        <Button Height="30" Margin="0,30,0,0" Command="{Binding CreateAccountCommand}">Создать</Button>
     </StackPanel>
 </Window>

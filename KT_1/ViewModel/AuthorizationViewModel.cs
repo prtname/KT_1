@@ -38,6 +38,12 @@ namespace KT_1.ViewModel
             set { m_AuthCommand = value; }
         }
 
+        public RelayCommand ShowRegistrationCommand
+        {
+            get { return m_ShowRegistrationCommand; }
+            set { m_ShowRegistrationCommand = value; }
+        }
+
         public bool? DialogResult { get; private set; }
 
         public User User { get; private set; }
@@ -53,11 +59,14 @@ namespace KT_1.ViewModel
         }
 
 
-        public AuthorizationViewModel(DialogView<AuthorizationViewModel> view, UserRepository userRepository)
+        public AuthorizationViewModel(DialogView<AuthorizationViewModel> view, DialogView<RegistrationViewModel> registrationView, UserRepository userRepository)
         {
             m_AuthCommand = new RelayCommand(CanAuth, Auth);
             m_View = view;
             m_UserRepository = userRepository;
+
+            m_ShowRegistrationCommand = new RelayCommand(ShowRegistration);
+            m_RegistrationView = registrationView;
 
             DialogResult = m_View.ShowDialog(this);
         }
@@ -79,6 +88,15 @@ namespace KT_1.ViewModel
             m_View.CloseDialog(true);
         }
 
+        private void ShowRegistration(object parameter)
+        {
+            RegistrationViewModel registration = new RegistrationViewModel(m_RegistrationView, m_UserRepository);
+            if (registration.DialogResult != true) return;
+
+            User = registration.User;
+            m_View.CloseDialog(true);
+        }
+
 
 
         private string m_Login;
@@ -88,5 +106,7 @@ namespace KT_1.ViewModel
         private string m_Error;
 
         private RelayCommand m_AuthCommand;
+        private RelayCommand m_ShowRegistrationCommand;
+        private DialogView<RegistrationViewModel> m_RegistrationView;
     }
 }

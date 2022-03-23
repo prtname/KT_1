@@ -20,7 +20,7 @@ namespace KT_1
         {
             UserRepository userRepository = new UserRepository();   
 
-            AuthorizationViewModel authViewModel = new AuthorizationViewModel(new AuthorizationWindow(), userRepository);
+            AuthorizationViewModel authViewModel = new AuthorizationViewModel(new AuthorizationWindow(), new RegistrationWindow(), userRepository);
             if (authViewModel.DialogResult == true)
             {
                 MessageBox.Show($"{authViewModel.User.Role} {authViewModel.User.Name}");

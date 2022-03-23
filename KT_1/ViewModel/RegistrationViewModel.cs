@@ -56,7 +56,23 @@ namespace KT_1.ViewModel
             set { m_CreateAccountCommand = value; }
         }
 
-        public string Error { get; private set; }
+        public string LoginError {
+            get { return m_LoginError; }
+            private set
+            {
+                m_LoginError = value;
+                OnPropertyChanged("LoginError");
+            }
+        }
+        public string PasswordError 
+        { 
+            get { return m_PasswordError; }
+            private set
+            {
+                m_PasswordError = value;
+                OnPropertyChanged("PasswordError");
+            }
+        }
 
         public bool? DialogResult { get; private set; }
 
@@ -75,7 +91,19 @@ namespace KT_1.ViewModel
 
         public void CreateUser(object parameter)
         {
+            if (m_UserRepository.HasUserWithLogin(Login))
+            {
+                LoginError = "Такой логин уже существует";
+                return;
+            }
+            if (Password != PasswordConfirmation)
+            {
+                PasswordError = "Пароли не совпадают";
+                return;
+            }
 
+            this.User = new User(Login, Password, Name, "Customer");
+            m_View.CloseDialog(true);
         }
 
         public bool CanCreateUser(object parameter)
@@ -89,7 +117,8 @@ namespace KT_1.ViewModel
         private string m_Password;
         private string m_PasswordConfirmation;
 
-        private string m_Error;
+        private string m_LoginError;
+        private string m_PasswordError;
 
         private DialogView<RegistrationViewModel> m_View;
         private UserRepository m_UserRepository;

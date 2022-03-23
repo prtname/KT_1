@@ -37,7 +37,7 @@
         </StackPanel>
 
         <TextBlock HorizontalAlignment="Center">
-            <Hyperlink>Создать аккаунт</Hyperlink>
+            <Hyperlink Command="{Binding ShowRegistrationCommand}">Создать аккаунт</Hyperlink>
         </TextBlock>
 
         <Button Height="30" Margin="0,30,0,0" Command="{Binding AuthCommand}">Вход</Button>
