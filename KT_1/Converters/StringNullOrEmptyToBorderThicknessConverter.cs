@@ -12,7 +12,7 @@ using System.Windows.Media;
 
 namespace KT_1.Converters
 {
-    internal class StringNullOrEmptyToBorderThicknessConverter : MarkupExtension, IValueConverter
+    public class StringNullOrEmptyToBorderThicknessConverter : MarkupExtension, IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
