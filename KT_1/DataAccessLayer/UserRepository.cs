@@ -24,6 +24,20 @@ namespace KT_1.DataAccessLayer
             return m_Users.ContainsKey(new LoginPassword(login,password));
         }
 
+        public bool HasUserWithLogin(string login)
+        {
+            foreach (var user in m_Users)
+            {
+                if (user.Value.Login == login) return true;
+            }
+            return false;
+        }
+
+        public void CreateUser(User user)
+        {
+            m_Users.Add(new LoginPassword(user.Login, user.Password), user);
+        }
+
         private struct LoginPassword
         {
             public LoginPassword(string login, string password)
