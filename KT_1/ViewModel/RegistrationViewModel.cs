@@ -102,7 +102,8 @@ namespace KT_1.ViewModel
                 return;
             }
 
-            this.User = new User(Login, Password, Name, "Customer");
+            User = new User(Login, Password, Name, "Customer");
+            m_UserRepository.AddUser(User);
             m_View.CloseDialog(true);
         }
 
