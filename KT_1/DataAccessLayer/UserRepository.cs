@@ -33,7 +33,7 @@ namespace KT_1.DataAccessLayer
             return false;
         }
 
-        public void CreateUser(User user)
+        public void AddUser(User user)
         {
             m_Users.Add(new LoginPassword(user.Login, user.Password), user);
         }
