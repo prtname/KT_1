@@ -22,7 +22,9 @@ namespace KT_1
             var userRepository = new UserRepository();
             var registrationViewFactory = new RegistrationViewFactory(userRepository);
 
-            AuthorizationViewModel authViewModel = new AuthorizationViewModel(new AuthorizationWindow(), new RegistrationWindow(), userRepository);
+            var authViewModel = new AuthorizationViewModel(userRepository, registrationViewFactory);
+            var authView = new AuthorizationWindow(authViewModel);
+            authView.Show();
         }
     }
 }
