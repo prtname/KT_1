@@ -20,22 +20,12 @@ namespace KT_1.View
     /// <summary>
     /// Логика взаимодействия для AuthorizationWindow.xaml
     /// </summary>
-    public partial class AuthorizationWindow : Window, DialogView<AuthorizationViewModel>
+    public partial class AuthorizationWindow : Window
     {
-        public AuthorizationWindow()
+        public AuthorizationWindow(AuthorizationViewModel viewModel)
         {
+            DataContext = viewModel;
             InitializeComponent();
-        }
-
-        public bool? ShowDialog(AuthorizationViewModel viewModel)
-        {
-            this.DataContext = viewModel;
-            return this.ShowDialog();
-        }
-
-        public void CloseDialog(bool dialogResult)
-        {
-            DialogResult = dialogResult;
         }
     }
 }
