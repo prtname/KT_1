@@ -4,9 +4,11 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using KT_1.DataAccessLayer;
 using KT_1.Helpers;
 using KT_1.Model;
+using KT_1.View.Factories;
 
 namespace KT_1.ViewModel
 {
@@ -32,6 +34,8 @@ namespace KT_1.ViewModel
             }
         }
 
+        public Visibility WindowVisibility { get; private set; }
+
         public RelayCommand AuthCommand
         {
             get { return m_AuthCommand; }
@@ -43,8 +47,6 @@ namespace KT_1.ViewModel
             get { return m_ShowRegistrationCommand; }
             set { m_ShowRegistrationCommand = value; }
         }
-
-        public bool? DialogResult { get; private set; }
 
         public User User { get; private set; }
 
@@ -59,16 +61,16 @@ namespace KT_1.ViewModel
         }
 
 
-        public AuthorizationViewModel(DialogView<AuthorizationViewModel> view, DialogView<RegistrationViewModel> registrationView, UserRepository userRepository)
+        public AuthorizationViewModel(UserRepository userRepository, RegistrationViewFactory registrationViewFactory)
         {
+            if (userRepository == null) throw new ArgumentNullException(nameof(userRepository));
+            if (registrationViewFactory == null) throw new ArgumentNullException(nameof(registrationViewFactory));
+
             m_AuthCommand = new RelayCommand(CanAuth, Auth);
-            m_View = view;
             m_UserRepository = userRepository;
 
             m_ShowRegistrationCommand = new RelayCommand(ShowRegistration);
-            m_RegistrationView = registrationView;
-
-            DialogResult = m_View.ShowDialog(this);
+            m_RegistrationViewFactory = registrationViewFactory;
         }
 
         private bool CanAuth(object parameter)
@@ -85,28 +87,26 @@ namespace KT_1.ViewModel
             }
 
             this.User = m_UserRepository.GetUserWithLoginPassword(Login, Password);
-            m_View.CloseDialog(true);
         }
 
         private void ShowRegistration(object parameter)
         {
-            RegistrationViewModel registration = new RegistrationViewModel(m_RegistrationView, m_UserRepository);
-            if (registration.DialogResult != true) return;
-
-            User = registration.User;
-            m_View.CloseDialog(true);
+            m_RegistrationViewFactory.DialogSuccess += OnRegistrationCompleted;
+            m_RegistrationViewFactory.ShowDialog();
         }
 
-
+        private void OnRegistrationCompleted(object sender, User user)
+        {
+            User = user;
+        }
 
         private string m_Login;
         private string m_Password;
-        private DialogView<AuthorizationViewModel> m_View;
         private UserRepository m_UserRepository;
         private string m_Error;
+        private RegistrationViewFactory m_RegistrationViewFactory;
 
         private RelayCommand m_AuthCommand;
         private RelayCommand m_ShowRegistrationCommand;
-        private DialogView<RegistrationViewModel> m_RegistrationView;
     }
 }

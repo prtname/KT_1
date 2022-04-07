@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using KT_1.DataAccessLayer;
 using KT_1.View;
+using KT_1.View.Factories;
 using KT_1.ViewModel;
 
 namespace KT_1
@@ -18,13 +19,10 @@ namespace KT_1
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            UserRepository userRepository = new UserRepository();   
+            var userRepository = new UserRepository();
+            var registrationViewFactory = new RegistrationViewFactory(userRepository);
 
             AuthorizationViewModel authViewModel = new AuthorizationViewModel(new AuthorizationWindow(), new RegistrationWindow(), userRepository);
-            if (authViewModel.DialogResult == true)
-            {
-                MessageBox.Show($"{authViewModel.User.Role} {authViewModel.User.Name}");
-            }
         }
     }
 }

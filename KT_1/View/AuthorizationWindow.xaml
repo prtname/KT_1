@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:KT_1.View"
         xmlns:converters="clr-namespace:KT_1.Converters"
         mc:Ignorable="d"
-        Title="AuthorizationWindow" Height="450" Width="800">
+        Title="AuthorizationWindow" Height="450" Width="800"
+        Visibility="{Binding WindowVisibility}">
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
         <StackPanel.Resources>
             <Style TargetType="TextBox">
