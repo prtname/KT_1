@@ -9,7 +9,7 @@
         Title="Вход" 
         MinHeight="305" MinWidth="360"
         Height="400" Width="650"
-        Visibility="{Binding WindowVisibility}">
+        Visibility="{Binding WindowVisibility, Mode=TwoWay}">
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,0">
         <StackPanel.Resources>
             <Style TargetType="TextBox">
