@@ -21,15 +21,28 @@ namespace KT_1.View.UserControls
     public partial class NavigationBar : UserControl
     {
         public static readonly DependencyProperty ItemsDependencyProperty = DependencyProperty.Register(nameof(Items), typeof(IEnumerable<MenuItemData>), typeof(NavigationBar));
+        public static readonly DependencyProperty SelectedPageUriDependencyProperty = DependencyProperty.Register(nameof(SelectedPageUri), typeof(Uri), typeof(NavigationBar));
 
         public IEnumerable<MenuItemData> Items
         {
             get => (IEnumerable<MenuItemData>)GetValue(ItemsDependencyProperty);
             set => SetValue(ItemsDependencyProperty, value);
         }
+
+        public Uri SelectedPageUri
+        {
+            get => (Uri)GetValue(SelectedPageUriDependencyProperty);
+            set => SetValue(SelectedPageUriDependencyProperty, value);
+        }
+
         public NavigationBar()
         {
             InitializeComponent();
+        }
+
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            SelectedPageUri = ((RadioButton)sender).Tag as Uri;
         }
     }
 }

@@ -10,7 +10,7 @@
         <ItemsControl.ItemTemplate>
             <DataTemplate>
                 <StackPanel>
-                    <RadioButton Content="{Binding Title}" Command="{Binding ClickCommand}"></RadioButton>
+                    <RadioButton Content="{Binding Title}" Command="{Binding ClickCommand}" Tag="{Binding PageUri}" Checked="RadioButton_Checked"></RadioButton>
                 </StackPanel>
             </DataTemplate>
         </ItemsControl.ItemTemplate>
