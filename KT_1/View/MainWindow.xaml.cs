@@ -23,7 +23,6 @@ namespace KT_1.View
         public MainWindow(MainViewModel viewModel)
         {
             DataContext = viewModel;
-            Closed += viewModel.OnWindowClosed;
 
             InitializeComponent();
         }
