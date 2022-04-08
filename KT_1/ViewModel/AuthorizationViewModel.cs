@@ -34,7 +34,15 @@ namespace KT_1.ViewModel
             }
         }
 
-        public Visibility WindowVisibility { get; private set; }
+        public Visibility WindowVisibility
+        {
+            get { return m_WindowVisibility; }
+            set
+            {
+                m_WindowVisibility = value;
+                OnPropertyChanged("WindowVisibility");
+            }
+        }
 
         public RelayCommand AuthCommand
         {
@@ -70,6 +78,7 @@ namespace KT_1.ViewModel
             m_UserRepository = userRepository;
 
             m_ShowRegistrationCommand = new RelayCommand(ShowRegistration);
+
             m_RegistrationViewFactory = registrationViewFactory;
         }
 
@@ -87,6 +96,18 @@ namespace KT_1.ViewModel
             }
 
             this.User = m_UserRepository.GetUserWithLoginPassword(Login, Password);
+
+            AuthCompleted();
+        }
+
+        private void AuthCompleted()
+        {
+            var viewFactory = new MainViewFactory(User);
+
+            viewFactory.Closed += (sender, e) => App.Current.Shutdown();
+
+            this.WindowVisibility = Visibility.Hidden;
+            viewFactory.Show();
         }
 
         private void ShowRegistration(object parameter)
@@ -98,6 +119,7 @@ namespace KT_1.ViewModel
         private void OnRegistrationCompleted(object sender, User user)
         {
             User = user;
+            AuthCompleted();
         }
 
         private string m_Login;
@@ -108,5 +130,7 @@ namespace KT_1.ViewModel
 
         private RelayCommand m_AuthCommand;
         private RelayCommand m_ShowRegistrationCommand;
+
+        private Visibility m_WindowVisibility;
     }
 }

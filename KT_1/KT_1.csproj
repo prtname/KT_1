@@ -63,6 +63,7 @@
     <Compile Include="Helpers\RelayCommand.cs" />
     <Compile Include="ViewModel\AuthorizationViewModel.cs" />
     <Compile Include="Helpers\BaseViewModel.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\RegistrationViewModel.cs" />
     <Compile Include="View\AuthorizationWindow.xaml.cs">
       <DependentUpon>AuthorizationWindow.xaml</DependentUpon>
@@ -72,13 +73,21 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DataAccessLayer\ProductRepository.cs" />
+    <Compile Include="View\Factories\MainViewFactory.cs" />
     <Compile Include="View\Factories\RegistrationViewFactory.cs" />
+    <Compile Include="View\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\RegistrationWindow.xaml.cs">
       <DependentUpon>RegistrationWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="View\AuthorizationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\RegistrationWindow.xaml">
       <SubType>Designer</SubType>
