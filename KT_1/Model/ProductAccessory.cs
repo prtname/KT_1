@@ -18,7 +18,7 @@ namespace KT_1.Model
         }
     }
 
-    internal class ProductAccessory
+    public class ProductAccessory
     {
         public Product Product { get; set; }
         public Accessory Accessory { get; set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KT_1.Model
 {
-    internal class Fabric
+    public class Fabric
     {
         public int Articul { get; set; }
 
