@@ -8,7 +8,7 @@ using System.Windows;
 using KT_1.DataAccessLayer;
 using KT_1.Helpers;
 using KT_1.Model;
-using KT_1.View.Factories;
+using KT_1.View;
 
 namespace KT_1.ViewModel
 {
@@ -69,17 +69,14 @@ namespace KT_1.ViewModel
         }
 
 
-        public AuthorizationViewModel(UserRepository userRepository, RegistrationViewFactory registrationViewFactory)
+        public AuthorizationViewModel(UserRepository userRepository)
         {
             if (userRepository == null) throw new ArgumentNullException(nameof(userRepository));
-            if (registrationViewFactory == null) throw new ArgumentNullException(nameof(registrationViewFactory));
 
             m_AuthCommand = new RelayCommand(CanAuth, Auth);
             m_UserRepository = userRepository;
 
             m_ShowRegistrationCommand = new RelayCommand(ShowRegistration);
-
-            m_RegistrationViewFactory = registrationViewFactory;
         }
 
         private bool CanAuth(object parameter)
@@ -102,31 +99,29 @@ namespace KT_1.ViewModel
 
         private void AuthCompleted()
         {
-            var viewFactory = new MainViewFactory(User);
+            var viewModel = new MainViewModel(User);
+            var view = new MainWindow(viewModel);
 
-            viewFactory.Closed += (sender, e) => App.Current.Shutdown();
+            view.Closed += (sender, e) => App.Current.Shutdown();
 
-            this.WindowVisibility = Visibility.Hidden;
-            viewFactory.Show();
+            WindowVisibility = Visibility.Hidden;
+            view.Show();
         }
 
         private void ShowRegistration(object parameter)
         {
-            m_RegistrationViewFactory.DialogSuccess += OnRegistrationCompleted;
-            m_RegistrationViewFactory.ShowDialog();
-        }
-
-        private void OnRegistrationCompleted(object sender, User user)
-        {
-            User = user;
-            AuthCompleted();
+            var viewModel = new RegistrationViewModel(new RegistrationWindow(), m_UserRepository);
+            if (viewModel.DialogResult != null && viewModel.DialogResult == true)
+            {
+                User = viewModel.User;
+                AuthCompleted();
+            }
         }
 
         private string m_Login;
         private string m_Password;
         private UserRepository m_UserRepository;
         private string m_Error;
-        private RegistrationViewFactory m_RegistrationViewFactory;
 
         private RelayCommand m_AuthCommand;
         private RelayCommand m_ShowRegistrationCommand;
