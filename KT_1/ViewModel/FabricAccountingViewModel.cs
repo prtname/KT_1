@@ -26,7 +26,7 @@ namespace KT_1.ViewModel
         public FabricAccountingViewModel(FabricRepository fabricRepository)
         {
             m_FabricRepository = fabricRepository;
-            m_Fabrics = new ObservableCollection<Fabric>(m_FabricRepository.GetAllProducts());
+            m_Fabrics = new ObservableCollection<Fabric>(m_FabricRepository.GetAllFabrics());
         }
 
         private void OnFabricsChanged(object sender, NotifyCollectionChangedEventArgs e)
