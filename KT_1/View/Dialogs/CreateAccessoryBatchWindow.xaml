@@ -50,7 +50,9 @@
             <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding AccessoriesNumber}"></TextBox>
 
             <TextBlock Grid.Row="2" Grid.Column="0">Аксессуар:</TextBlock>
-            <ComboBox Grid.Row="2" Grid.Column="1" ItemsSource="{Binding Accessories}">
+            <ComboBox Grid.Row="2" Grid.Column="1" 
+                      ItemsSource="{Binding Accessories}"
+                      SelectedItem="{Binding SelectedAccessory}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
@@ -69,8 +71,8 @@
                     <Setter Property="Margin" Value="5,0"/>
                 </Style>
             </StackPanel.Resources>
-            <Button Command="{Binding AddCommand}">Добавить</Button>
-            <Button>Отмена</Button>
+            <Button Command="{Binding CreateCommand}">Добавить</Button>
+            <Button Command="{Binding CloseCommand}">Отмена</Button>
         </StackPanel>
 
     </Grid>

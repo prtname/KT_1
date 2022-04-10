@@ -60,7 +60,7 @@
             </ComboBox>
 
             <TextBlock Grid.Row="2" Grid.Column="0">Количество:</TextBlock>
-            <TextBox Text="{Binding Number}" Grid.Row="2" Grid.Column="1"></TextBox>
+            <TextBox Text="{Binding Number, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="1"></TextBox>
 
             <TextBlock Grid.Row="3" Grid.Column="0">Менеджер:</TextBlock>
             <ComboBox ItemsSource="{Binding Managers}" Grid.Row="3" Grid.Column="1">
@@ -82,8 +82,8 @@
                     <Setter Property="Margin" Value="5,0"/>
                 </Style>
             </StackPanel.Resources>
-            <Button Command="{Binding AddCommand}">ОК</Button>
-            <Button>Отмена</Button>
+            <Button Command="{Binding CreateCommand}">ОК</Button>
+            <Button Command="{Binding CloseCommand}">Отмена</Button>
         </StackPanel>
 
     </Grid>
