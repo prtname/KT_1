@@ -11,7 +11,7 @@ namespace KT_1.DataAccessLayer
     {
         public UserRepository()
         {
-            m_Users.Add(new LoginPassword("Lubi4", "123321"), new User("Lubi4", "123321", "Lubi4", "Customer"));
+            m_Users.Add(new LoginPassword("Lubi4", "123321"), new User("Lubi4", "123321", "Lubi4", "Storekeeper"));
         }
 
         public User GetUserWithLoginPassword(string login, string password)

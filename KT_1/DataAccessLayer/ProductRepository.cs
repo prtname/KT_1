@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KT_1.DataAccessLayer
 {
-    internal class ProductRepository
+    public class ProductRepository
     {
         public IEnumerable<Product> GetAllProducts()
         {
