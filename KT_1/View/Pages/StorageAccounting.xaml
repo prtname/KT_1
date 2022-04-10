@@ -10,9 +10,84 @@
 
     <TabControl>
         <TabItem Header="Ткани">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                </Grid.RowDefinitions>
+                <DataGrid Grid.Row="0"  ItemsSource="{Binding FabricRolls}" 
+                          AutoGenerateColumns="False" 
+                          CanUserReorderColumns="False"
+                          CanUserDeleteRows="False"
+                          CanUserAddRows="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Рулон" Binding="{Binding RollArticul}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Длина" Binding="{Binding Length}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Артикул" Binding="{Binding Fabric.Articul}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Имя" Binding="{Binding Fabric.Name}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Цвет" Binding="{Binding Fabric.Color}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Рисунок" Binding="{Binding Fabric.Texture}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Ширина" Binding="{Binding Fabric.Width}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Высота" Binding="{Binding Fabric.Height}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Цена" Binding="{Binding Fabric.Price}"></DataGridTextColumn>
+                        <DataGridTemplateColumn Header="Состав">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ItemsControl ItemsSource="{Binding Fabric.Composition}"></ItemsControl>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
+                    <StackPanel.Resources>
+                        <Style TargetType="Button">
+                            <Setter Property="Width" Value="100"/>
+                            <Setter Property="Margin" Value="5,0"/>
+                        </Style>
+                    </StackPanel.Resources>
+
+                    <Button>Добавить</Button>
+                    <Button>Удалить</Button>
+                    <Button>Редактировать</Button>
+                </StackPanel>
+            </Grid>
         </TabItem>
 
         <TabItem Header="Аксессуары">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                </Grid.RowDefinitions>
+                <DataGrid ItemsSource="{Binding AccessoryBatches}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Партия" Binding="{Binding BatchArticul}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Количество" Binding="{Binding AccessoryNumber}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Артикул" Binding="{Binding Accessory.Articul}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Имя" Binding="{Binding Accessory.Name}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Тип" Binding="{Binding Accessory.Type}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Ширина" Binding="{Binding Accessory.Width}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Высота" Binding="{Binding Accessory.Height}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Цена" Binding="{Binding Accessory.Price}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Рисунок" Binding="{Binding Accessory.Texture}"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                
+                <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
+                    <StackPanel.Resources>
+                        <Style TargetType="Button">
+                            <Setter Property="Width" Value="100"/>
+                            <Setter Property="Margin" Value="5,0"/>
+                        </Style>
+                    </StackPanel.Resources>
+
+                    <Button>Добавить</Button>
+                    <Button>Удалить</Button>
+                    <Button>Редактировать</Button>
+                </StackPanel>
+            </Grid>
         </TabItem>
     </TabControl>
 </Page>

@@ -8,7 +8,34 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AccessoriesAccounting">
 
-    <Grid>
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+        </Grid.RowDefinitions>
+        <DataGrid ItemsSource="{Binding Accessories}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Артикул" Binding="{Binding Articul}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Имя" Binding="{Binding Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Тип" Binding="{Binding Type}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Ширина" Binding="{Binding Width}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Высота" Binding="{Binding Height}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Цена" Binding="{Binding Price}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Рисунок" Binding="{Binding Texture}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
         
+        <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
+            <StackPanel.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="Width" Value="100"/>
+                    <Setter Property="Margin" Value="5,0"/>
+                </Style>
+            </StackPanel.Resources>
+
+            <Button>Добавить</Button>
+            <Button>Удалить</Button>
+            <Button>Редактировать</Button>
+        </StackPanel>
     </Grid>
 </Page>
