@@ -48,9 +48,9 @@
                         </Style>
                     </StackPanel.Resources>
 
-                    <Button>Добавить</Button>
-                    <Button>Удалить</Button>
-                    <Button>Редактировать</Button>
+                    <Button Command="{Binding AddRollCommand}">Добавить</Button>
+                    <Button Command="{Binding DeleteRollCommand}">Удалить</Button>
+                    <Button Command="{Binding EditRollCommand}">Редактировать</Button>
                 </StackPanel>
             </Grid>
         </TabItem>
@@ -83,9 +83,9 @@
                         </Style>
                     </StackPanel.Resources>
 
-                    <Button>Добавить</Button>
-                    <Button>Удалить</Button>
-                    <Button>Редактировать</Button>
+                    <Button Command="{Binding AddBatchCommand}">Добавить</Button>
+                    <Button Command="{Binding DeleteBatchCommand}">Удалить</Button>
+                    <Button Command="{Binding EditBatchCommand}">Редактировать</Button>
                 </StackPanel>
             </Grid>
         </TabItem>

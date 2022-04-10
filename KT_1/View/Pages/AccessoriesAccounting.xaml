@@ -33,9 +33,9 @@
                 </Style>
             </StackPanel.Resources>
 
-            <Button>Добавить</Button>
-            <Button>Удалить</Button>
-            <Button>Редактировать</Button>
+            <Button Command="{Binding AddCommand}">Добавить</Button>
+            <Button Command="{Binding DeleteCommand}">Удалить</Button>
+            <Button Command="{Binding EditCommand}">Редактировать</Button>
         </StackPanel>
     </Grid>
 </Page>
