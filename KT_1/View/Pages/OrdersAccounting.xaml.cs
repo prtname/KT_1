@@ -18,9 +18,9 @@ namespace KT_1.View.Pages
     /// <summary>
     /// Логика взаимодействия для CustomerOrders.xaml
     /// </summary>
-    public partial class CustomerOrders : Page
+    public partial class OrdersAccounting : Page
     {
-        public CustomerOrders()
+        public OrdersAccounting()
         {
             InitializeComponent();
         }
