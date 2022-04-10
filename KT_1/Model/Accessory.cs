@@ -12,7 +12,7 @@ namespace KT_1.Model
         {
         }
 
-        public Accessory(int articul, string name, string type,
+        public Accessory(string articul, string name, string type,
             double width, double height, string texture,
             double price)
         {
@@ -26,7 +26,7 @@ namespace KT_1.Model
         }
 
 
-        public int Articul { get; set; }
+        public string Articul { get; set; }
 
         public string Name {get; set; }
         public string Type {get; set; }

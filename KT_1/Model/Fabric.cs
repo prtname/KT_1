@@ -8,7 +8,7 @@ namespace KT_1.Model
 {
     public class Fabric
     {
-        public int Articul { get; set; }
+        public string Articul { get; set; }
 
         public string Name { get; set; }
 
@@ -33,7 +33,7 @@ namespace KT_1.Model
             m_Composition = new List<string>();
         }
 
-        public Fabric(int articul, string name, double width, double height, 
+        public Fabric(string articul, string name, double width, double height, 
             double price, IEnumerable<string> composition)
         {
             Articul = articul;
