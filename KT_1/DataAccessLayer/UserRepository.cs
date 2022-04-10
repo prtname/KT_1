@@ -55,6 +55,11 @@ namespace KT_1.DataAccessLayer
             private string m_password;
         }
 
+        internal IEnumerable<User> GetAllUsersWithRole(string v)
+        {
+            throw new NotImplementedException();
+        }
+
         private Dictionary<LoginPassword, User> m_Users = new Dictionary<LoginPassword, User>() { };
     }
 }

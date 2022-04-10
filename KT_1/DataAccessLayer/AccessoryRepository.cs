@@ -31,5 +31,25 @@ namespace KT_1.DataAccessLayer
 
         private List<Accessory> m_Accessories = new List<Accessory>();
         private List<AccessoryBatch> m_Batches = new List<AccessoryBatch>();
+
+        public void Replace(AccessoryBatch m_AccessoryBatch, AccessoryBatch batch)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Add(AccessoryBatch batch)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Replace(Accessory m_Accessory, Accessory accessory)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Add(Accessory accessory)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

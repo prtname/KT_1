@@ -34,5 +34,25 @@ namespace KT_1.DataAccessLayer
 
         private List<Fabric> m_Fabrics = new List<Fabric>();
         private List<FabricRoll> m_Rolls = new List<FabricRoll>();
+
+        internal void Replace(FabricRoll m_Roll, FabricRoll roll)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void Add(FabricRoll roll)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void Replace(Fabric m_Fabric, Fabric fabric)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void Add(Fabric fabric)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

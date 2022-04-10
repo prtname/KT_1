@@ -31,5 +31,15 @@ namespace KT_1.DataAccessLayer
         }
 
         private List<Order> m_Orders = new List<Order>();
+
+        internal int GetNewId()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void Replace(Order m_Order, Order order)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
