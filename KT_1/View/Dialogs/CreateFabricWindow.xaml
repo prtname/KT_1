@@ -49,30 +49,30 @@
             </Grid.Resources>
 
             <TextBlock Grid.Row="0" Grid.Column="0">Артикул:</TextBlock>
-            <TextBox Grid.Row="0" Grid.Column="1"></TextBox>
+            <TextBox Text="{Binding Articul}" Grid.Row="0" Grid.Column="1"></TextBox>
 
             <TextBlock Grid.Row="1" Grid.Column="0">Название:</TextBlock>
-            <TextBox Grid.Row="1" Grid.Column="1"></TextBox>
+            <TextBox Text="{Binding Name}" Grid.Row="1" Grid.Column="1"></TextBox>
 
             <TextBlock Grid.Row="2" Grid.Column="0">Цвет:</TextBlock>
-            <TextBox Grid.Row="2" Grid.Column="1"></TextBox>
+            <TextBox Text="{Binding Color}" Grid.Row="2" Grid.Column="1"></TextBox>
 
             <TextBlock Grid.Row="3" Grid.Column="0">Ширина:</TextBlock>
-            <TextBox Grid.Row="3" Grid.Column="1"></TextBox>
+            <TextBox Text="{Binding Width}" Grid.Row="3" Grid.Column="1"></TextBox>
 
             <TextBlock Grid.Row="4" Grid.Column="0">Высота:</TextBlock>
-            <TextBox Grid.Row="4" Grid.Column="1"></TextBox>
+            <TextBox Text="{Binding Height}" Grid.Row="4" Grid.Column="1"></TextBox>
 
             <TextBlock Grid.Row="5" Grid.Column="0">Рисунок:</TextBlock>
-            <TextBox Grid.Row="5" Grid.Column="1"></TextBox>
+            <TextBox Text="{Binding Texture}" Grid.Row="5" Grid.Column="1"></TextBox>
 
             <TextBlock Grid.Row="6" Grid.Column="0">Цена:</TextBlock>
-            <TextBox Grid.Row="6" Grid.Column="1"></TextBox>
+            <TextBox Text="{Binding Price}" Grid.Row="6" Grid.Column="1"></TextBox>
 
             <TextBlock Grid.Row="7" Grid.Column="0">Состав:</TextBlock>
             <StackPanel Grid.Row="7" Grid.Column="1">
                 <StackPanel Orientation="Horizontal">
-                    <ListBox Height="60" Width="200" HorizontalAlignment="Left"></ListBox>
+                    <ListBox ItemsSource="{Binding Composition}" Height="60" Width="200" HorizontalAlignment="Left"></ListBox>
                     <Button Height="20" Width="60" Margin="5,0" VerticalAlignment="Bottom">Удалить</Button>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,10">
@@ -90,7 +90,7 @@
                     <Setter Property="Margin" Value="5,0"/>
                 </Style>
             </StackPanel.Resources>
-            <Button>Добавить</Button>
+            <Button Command="{Binding AddCommand}">Добавить</Button>
             <Button>Отмена</Button>
         </StackPanel>
 

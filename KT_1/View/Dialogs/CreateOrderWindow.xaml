@@ -48,16 +48,31 @@
             </Grid.Resources>
 
             <TextBlock Grid.Row="1" Grid.Column="0">Изделие:</TextBlock>
-            <ComboBox Grid.Row="1" Grid.Column="1"></ComboBox>
+            <ComboBox ItemsSource="{Binding Products}" Grid.Row="1" Grid.Column="1">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Articul}"></TextBlock>
+                            <TextBlock Text="{Binding Name}"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
 
             <TextBlock Grid.Row="2" Grid.Column="0">Количество:</TextBlock>
-            <TextBox Grid.Row="2" Grid.Column="1"></TextBox>
+            <TextBox Text="{Binding Number}" Grid.Row="2" Grid.Column="1"></TextBox>
 
             <TextBlock Grid.Row="3" Grid.Column="0">Менеджер:</TextBlock>
-            <ComboBox Grid.Row="3" Grid.Column="1"></ComboBox>
+            <ComboBox ItemsSource="{Binding Managers}" Grid.Row="3" Grid.Column="1">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"></TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
 
             <TextBlock Grid.Row="6" Grid.Column="0">Цена:</TextBlock>
-            <TextBox IsReadOnly="True" Grid.Row="6" Grid.Column="1"></TextBox>
+            <TextBox Text="{Binding Price}" IsReadOnly="True" Grid.Row="6" Grid.Column="1"></TextBox>
         </Grid>
 
         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="1">
@@ -67,7 +82,7 @@
                     <Setter Property="Margin" Value="5,0"/>
                 </Style>
             </StackPanel.Resources>
-            <Button>ОК</Button>
+            <Button Command="{Binding AddCommand}">ОК</Button>
             <Button>Отмена</Button>
         </StackPanel>
 

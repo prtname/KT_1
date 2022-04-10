@@ -44,13 +44,22 @@
             </Grid.Resources>
 
             <TextBlock Grid.Row="0" Grid.Column="0">Артикул партии:</TextBlock>
-            <TextBox Grid.Row="0" Grid.Column="1"></TextBox>
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Articul}"></TextBox>
 
             <TextBlock Grid.Row="1" Grid.Column="0">Количество аксессуаров:</TextBlock>
-            <TextBox Grid.Row="1" Grid.Column="1"></TextBox>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding AccessoriesNumber}"></TextBox>
 
             <TextBlock Grid.Row="2" Grid.Column="0">Аксессуар:</TextBlock>
-            <ComboBox Grid.Row="2" Grid.Column="1"></ComboBox>
+            <ComboBox Grid.Row="2" Grid.Column="1" ItemsSource="{Binding Accessories}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Articul}"></TextBlock>
+                            <TextBlock Text="{Binding Name}"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
         </Grid>
 
         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="1">
@@ -60,7 +69,7 @@
                     <Setter Property="Margin" Value="5,0"/>
                 </Style>
             </StackPanel.Resources>
-            <Button>Добавить</Button>
+            <Button Command="{Binding AddCommand}">Добавить</Button>
             <Button>Отмена</Button>
         </StackPanel>
 

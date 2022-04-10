@@ -44,13 +44,23 @@
             </Grid.Resources>
 
             <TextBlock Grid.Row="0" Grid.Column="0">Артикул рулона:</TextBlock>
-            <TextBox Grid.Row="0" Grid.Column="1"></TextBox>
+            <TextBox Text="{Binding Articul}" Grid.Row="0" Grid.Column="1"></TextBox>
 
             <TextBlock Grid.Row="1" Grid.Column="0">Длина:</TextBlock>
-            <TextBox Grid.Row="1" Grid.Column="1"></TextBox>
+            <TextBox Text="{Binding Length}" Grid.Row="1" Grid.Column="1"></TextBox>
 
             <TextBlock Grid.Row="2" Grid.Column="0">Ткань:</TextBlock>
-            <ComboBox Grid.Row="2" Grid.Column="1"></ComboBox>
+            <ComboBox ItemsSource="{Binding Fabrics}" Grid.Row="2" Grid.Column="1">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Articul}"></TextBlock>
+                            <TextBlock Text="{Binding Name}"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
         </Grid>
 
         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="1">
@@ -60,7 +70,7 @@
                     <Setter Property="Margin" Value="5,0"/>
                 </Style>
             </StackPanel.Resources>
-            <Button>Добавить</Button>
+            <Button Command="{Binding AddCommand}">Добавить</Button>
             <Button>Отмена</Button>
         </StackPanel>
 
