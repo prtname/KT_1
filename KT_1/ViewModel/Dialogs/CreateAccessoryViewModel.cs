@@ -1,4 +1,6 @@
-﻿using KT_1.Helpers;
+﻿using KT_1.DataAccessLayer;
+using KT_1.Helpers;
+using KT_1.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +38,7 @@ namespace KT_1.ViewModel.Dialogs
                 OnPropertyChanged("Type");
             }
         }
-        public double Width
+        public double? Width
         {
             get { return m_Width; }
             set
@@ -45,7 +47,7 @@ namespace KT_1.ViewModel.Dialogs
                 OnPropertyChanged("Width");
             }
         }
-        public double Height
+        public double? Height
         {
             get { return m_Height; }
             set
@@ -63,7 +65,7 @@ namespace KT_1.ViewModel.Dialogs
                 OnPropertyChanged("Texture");
             }
         }
-        public double Price
+        public double? Price
         {
             get { return m_Price; }
             set
@@ -74,18 +76,74 @@ namespace KT_1.ViewModel.Dialogs
         }
 
 
-        public CreateAccessoryViewModel()
-        {
+        public RelayCommand CreateCommand => m_CreateCommand;
+        public RelayCommand CloseCommand => m_CloseCommand;
 
+        public CreateAccessoryViewModel(AccessoryRepository accessoryRepository, Accessory accessory,
+            DialogView<CreateAccessoryViewModel> view)
+            : this(accessoryRepository, view)
+        {
+            m_Accessory = accessory;
+
+            m_Articul = accessory.Articul;
+            m_Name = accessory.Name;
+            m_Type = accessory.Type;
+            m_Width = accessory.Width;
+            m_Height = accessory.Height;
+            m_Texture = accessory.Texture;
+            m_Price = accessory.Price;
+        }
+
+        public CreateAccessoryViewModel(AccessoryRepository accessoryRepository, DialogView<CreateAccessoryViewModel> view)
+        {
+            m_AccessoryRepository = accessoryRepository;
+
+            m_CreateCommand = new RelayCommand(CanCreate, Create);
+            m_CloseCommand = new RelayCommand((param) => m_View.CloseDialog(false));
+        }
+
+        private bool CanCreate(object param)
+        {
+            if (string.IsNullOrWhiteSpace(Articul) || 
+                string.IsNullOrWhiteSpace(Name) ||
+                string.IsNullOrWhiteSpace(Type) ||
+                string.IsNullOrWhiteSpace(Texture) ||
+                Width == null ||
+                Height == null ||
+                Price == null)
+            {
+                return false;
+            }
+            return true;
+        }
+        private void Create(object param)
+        {
+            var accessory = new Accessory(Articul, Name, Type, (double)Width, (double)Height, Texture, (double)Price);
+            if (m_Accessory != null)
+            {
+                m_AccessoryRepository.Replace(m_Accessory, accessory);
+            }
+            else
+            {
+                m_AccessoryRepository.Add(accessory);
+            }
         }
 
 
-        public string m_Articul;
-        public string m_Name;
-        public string m_Type;
-        public double m_Width;
-        public double m_Height;
-        public string m_Texture;
-        public double m_Price;
+        private string m_Articul;
+        private string m_Name;
+        private string m_Type;
+        private double? m_Width;
+        private double? m_Height;
+        private string m_Texture;
+        private double? m_Price;
+
+        private RelayCommand m_CreateCommand;
+        private RelayCommand m_CloseCommand;
+
+        private AccessoryRepository m_AccessoryRepository;
+        private Accessory m_Accessory;
+
+        private DialogView<CreateAccessoryViewModel> m_View;
     }
 }
