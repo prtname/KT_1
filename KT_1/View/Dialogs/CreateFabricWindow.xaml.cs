@@ -23,5 +23,15 @@ namespace KT_1.View.Dialogs
         {
             InitializeComponent();
         }
+
+        private void AddComposition_Click(object sender, RoutedEventArgs e)
+        {
+            CompositionListBox.Items.Add(CompositionTextBox.Text);
+        }
+
+        private void DeleteComposition_Click(object sender, RoutedEventArgs e)
+        {
+            CompositionListBox.Items.Remove(CompositionListBox.SelectedItem);
+        }
     }
 }

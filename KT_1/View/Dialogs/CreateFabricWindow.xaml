@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KT_1.View.Dialogs"
+        xmlns:converters="clr-namespace:KT_1.Converters"
         mc:Ignorable="d"
         Title="CreateFabricWindow" Height="450" Width="800">
     <Grid Margin="5">
@@ -72,12 +73,12 @@
             <TextBlock Grid.Row="7" Grid.Column="0">Состав:</TextBlock>
             <StackPanel Grid.Row="7" Grid.Column="1">
                 <StackPanel Orientation="Horizontal">
-                    <ListBox ItemsSource="{Binding Composition}" Height="60" Width="200" HorizontalAlignment="Left"></ListBox>
-                    <Button Height="20" Width="60" Margin="5,0" VerticalAlignment="Bottom">Удалить</Button>
+                    <ListBox Name="CompositionListBox" ItemsSource="{Binding Composition}" Height="60" Width="200" HorizontalAlignment="Left"></ListBox>
+                    <Button Click="DeleteComposition_Click" IsEnabled="{Binding ElementName=CompositionListBox, Path=SelectedItem}" Height="20" Width="60" Margin="5,0" VerticalAlignment="Bottom">Удалить</Button>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,10">
-                    <TextBox Height="20"></TextBox>
-                    <Button Margin="5,0" Width="60" Height="20">Добавить</Button>
+                    <TextBox x:Name="CompositionTextBox" Height="20"></TextBox>
+                    <Button Click="AddComposition_Click" Margin="5,0" Width="60" Height="20" IsEnabled="{Binding ElementName=CompositionTextBox, Path=Text}">Добавить</Button>
                 </StackPanel>
             </StackPanel>
 
