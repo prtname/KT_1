@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -18,7 +19,11 @@ namespace KT_1
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            var userRepository = new UserRepository();
+            String connectionString = "Data Source=(local);Initial Catalog=KT_1;Integrated Security=True";
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+
+            var userRepository = new UserRepository(connection);
 
             var authViewModel = new AuthorizationViewModel(userRepository);
             var authView = new AuthorizationWindow(authViewModel);

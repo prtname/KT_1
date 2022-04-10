@@ -1,6 +1,8 @@
 ﻿using KT_1.Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,57 +11,118 @@ namespace KT_1.DataAccessLayer
 {
     public class UserRepository
     {
-        public UserRepository()
+        public UserRepository(SqlConnection connection)
         {
-            m_Users.Add(new LoginPassword("Lubi4", "123321"), new User("Lubi4", "123321", "Lubi4", "Storekeeper"));
+            m_Connection = connection;
         }
 
         public User GetUserWithLoginPassword(string login, string password)
         {
-            return m_Users[new LoginPassword(login, password)];
+            string queryString = "SELECT * FROM Users WHERE ULogin = @Login and UPassword = @Password;";
+
+            var loginParameter = new SqlParameter("@Login", SqlDbType.NChar);
+            loginParameter.Value = login;
+
+            var passwordParameter = new SqlParameter("@Password", SqlDbType.NChar);
+            passwordParameter.Value = password;
+
+            var cmd = new SqlCommand(queryString, m_Connection);
+            cmd.Parameters.Add(loginParameter);
+            cmd.Parameters.Add(passwordParameter);
+
+            var reader = cmd.ExecuteReader();
+            reader.Read();
+            var user = UserFromSqlDataReader(reader);
+            reader.Close();
+            return user;
         }
 
         public bool HasUserWithLoginPassword(string login, string password)
         {
-            return m_Users.ContainsKey(new LoginPassword(login,password));
+            string queryString = "SELECT * FROM Users WHERE ULogin = @Login and UPassword = @Password;";
+
+            var loginParameter = new SqlParameter("@Login", SqlDbType.NChar);
+            loginParameter.Value = login;
+
+            var passwordParameter = new SqlParameter("@Password", SqlDbType.NChar);
+            passwordParameter.Value = password;
+
+            var cmd = new SqlCommand(queryString, m_Connection);
+            cmd.Parameters.Add(loginParameter);
+            cmd.Parameters.Add(passwordParameter);
+
+            var reader = cmd.ExecuteReader();
+            bool hasRows = reader.HasRows;
+            reader.Close();
+            return hasRows;
         }
 
         public bool HasUserWithLogin(string login)
         {
-            foreach (var user in m_Users)
-            {
-                if (user.Value.Login == login) return true;
-            }
-            return false;
+            string queryString = "SELECT * FROM Users WHERE ULogin = @Login;";
+
+            var loginParameter = new SqlParameter("@Login", SqlDbType.NChar);
+            loginParameter.Value = login;
+
+            var cmd = new SqlCommand(queryString, m_Connection);
+            cmd.Parameters.Add(loginParameter);
+
+            var reader = cmd.ExecuteReader();
+            bool hasRows = reader.HasRows;
+            reader.Close();
+            return hasRows;
         }
 
         public void AddUser(User user)
         {
-            m_Users.Add(new LoginPassword(user.Login, user.Password), user);
+            string queryString = "INSERT INTO Users VALUES (@Login, @Password, @Name, @Role);";
+
+            var loginParameter = new SqlParameter("@Login", SqlDbType.NChar);
+            loginParameter.Value = user.Login;
+
+            var passwordParameter = new SqlParameter("@Password", SqlDbType.NChar);
+            passwordParameter.Value = user.Password;
+
+            var nameParameter = new SqlParameter("@Name", SqlDbType.NChar);
+            nameParameter.Value = user.Name;
+
+            var roleParameter = new SqlParameter("@Role", SqlDbType.NChar);
+            roleParameter.Value = user.Role;
+
+            var cmd = new SqlCommand(queryString, m_Connection);
+            cmd.Parameters.Add(loginParameter);
+            cmd.Parameters.Add(passwordParameter);
+            cmd.Parameters.Add(nameParameter);
+            cmd.Parameters.Add(roleParameter);
+
+            cmd.ExecuteNonQuery();
         }
 
-        private struct LoginPassword
+        public IEnumerable<User> GetAllUsersWithRole(string role)
         {
-            public LoginPassword(string login, string password)
+            string queryString = "SELECT * FROM Users WHERE URole = @Role;";
+
+            var roleParameter = new SqlParameter("@Role", SqlDbType.NChar);
+            roleParameter.Value = role;
+
+            var cmd = new SqlCommand(queryString, m_Connection);
+            cmd.Parameters.Add(roleParameter);
+
+            var reader = cmd.ExecuteReader();
+            var list = new List<User>();
+            while (reader.Read())
             {
-                m_login = login;
-                m_password = password;
+                list.Add(UserFromSqlDataReader(reader));
             }
 
-            public override int GetHashCode()
-            {
-                return m_login.GetHashCode() ^ m_password.GetHashCode();
-            }
-
-            private string m_login;
-            private string m_password;
+            return list;
         }
 
-        internal IEnumerable<User> GetAllUsersWithRole(string v)
+        private User UserFromSqlDataReader(SqlDataReader reader)
         {
-            throw new NotImplementedException();
+            return new User((string)reader[0], (string)reader[1], (string)reader[3], (string)reader[2]);
         }
 
-        private Dictionary<LoginPassword, User> m_Users = new Dictionary<LoginPassword, User>() { };
+        private SqlConnection m_Connection;
     }
 }
