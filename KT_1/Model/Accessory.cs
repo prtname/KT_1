@@ -12,9 +12,8 @@ namespace KT_1.Model
         {
         }
 
-        public Accessory(string articul, string name, string type,
-            double width, double height, string texture,
-            double price)
+        public Accessory(string articul, double weight ,string name, string type,
+            double width, double height, Decimal price)
         {
             Articul = articul;
             Name = name;
@@ -22,7 +21,7 @@ namespace KT_1.Model
             Width = width;
             Height = height;
             Price = price;
-            Texture = texture;
+            Weight = weight;
         }
 
 
@@ -33,9 +32,9 @@ namespace KT_1.Model
 
         public double Width {get; set; }
         public double Height {get; set; }
+        public double Weight { get; set; }
 
-        public string Texture {get; set; }
 
-        public double Price {get; set; }
+        public Decimal Price {get; set; }
     }
 }

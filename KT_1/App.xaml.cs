@@ -19,7 +19,7 @@ namespace KT_1
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            String connectionString = "Data Source=(local);Initial Catalog=KT_1;Integrated Security=True";
+            String connectionString = "Data Source=(local);Initial Catalog=KT_1;Integrated Security=True;";
             SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
 

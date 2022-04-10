@@ -70,6 +70,12 @@
     <Compile Include="ViewModel\AccessoriesAccountingViewModel.cs" />
     <Compile Include="ViewModel\AuthorizationViewModel.cs" />
     <Compile Include="Helpers\BaseViewModel.cs" />
+    <Compile Include="ViewModel\Dialogs\CreateAccessoryBatchViewModel.cs" />
+    <Compile Include="ViewModel\Dialogs\CreateAccessoryViewModel.cs" />
+    <Compile Include="ViewModel\Dialogs\CreateFabricRollViewModel.cs" />
+    <Compile Include="ViewModel\Dialogs\CreateFabricViewModel.cs" />
+    <Compile Include="ViewModel\Dialogs\CreateOrderViewModel.cs" />
+    <Compile Include="ViewModel\Dialogs\CreateProductViewModel.cs" />
     <Compile Include="ViewModel\FabricAccountingViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\OrdersViewModel.cs" />
@@ -84,6 +90,24 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DataAccessLayer\ProductRepository.cs" />
+    <Compile Include="View\Dialogs\CreateAccessoryBatchWindow.xaml.cs">
+      <DependentUpon>CreateAccessoryBatchWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dialogs\CreateAccessoryWindow.xaml.cs">
+      <DependentUpon>CreateAccessoryWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dialogs\CreateFabricRollWindow.xaml.cs">
+      <DependentUpon>CreateFabricRollWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dialogs\CreateFabricWindow.xaml.cs">
+      <DependentUpon>CreateFabricWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dialogs\CreateOrderWindow.xaml.cs">
+      <DependentUpon>CreateOrderWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dialogs\CreateProductWindow.xaml.cs">
+      <DependentUpon>CreateProductWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\AccessoriesAccounting.xaml.cs">
       <DependentUpon>AccessoriesAccounting.xaml</DependentUpon>
     </Compile>
@@ -110,6 +134,30 @@
       <DependentUpon>NavigationBar.xaml</DependentUpon>
     </Compile>
     <Page Include="View\AuthorizationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Dialogs\CreateAccessoryBatchWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Dialogs\CreateAccessoryWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Dialogs\CreateFabricRollWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Dialogs\CreateFabricWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Dialogs\CreateOrderWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Dialogs\CreateProductWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

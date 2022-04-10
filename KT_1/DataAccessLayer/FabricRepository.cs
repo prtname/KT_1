@@ -26,10 +26,6 @@ namespace KT_1.DataAccessLayer
 
         public FabricRepository()
         {
-            var f = new Fabric(123, "имя", 200, 100, 300, new List<string>());
-            f.AddComposition("Хлопок");
-            f.AddComposition("Полиэстер");
-            m_Fabrics.Add(f);
         }
 
         private List<Fabric> m_Fabrics = new List<Fabric>();

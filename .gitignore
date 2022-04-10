@@ -51,9 +51,6 @@ bld/
 *.vsp
 *.vspx
 
-# SQL Server files
-*.mdf
-*.ldf
 
 bin
 obj

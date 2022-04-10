@@ -20,7 +20,7 @@ namespace KT_1.Model
 
         public double Height { get; set; }
 
-        public double Price { get; set; }
+        public Decimal Price { get; set; }
 
         public IEnumerable<string> Composition
         {
@@ -34,7 +34,7 @@ namespace KT_1.Model
         }
 
         public Fabric(string articul, string name, double width, double height, 
-            double price, IEnumerable<string> composition)
+            Decimal price, IEnumerable<string> composition)
         {
             Articul = articul;
             Name = name;

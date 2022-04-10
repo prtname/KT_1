@@ -66,7 +66,7 @@ namespace KT_1.ViewModel.Dialogs
                 OnPropertyChanged("Texture");
             }
         }
-        public double? Price
+        public Decimal? Price
         {
             get { return m_Price; }
             set
@@ -93,7 +93,7 @@ namespace KT_1.ViewModel.Dialogs
             Height = fabric.Height;
             Texture = fabric.Texture;
             Price = fabric.Price;
-            Composition = new ObservableCollection<string>(fabric.Composition);
+            m_Composition = new ObservableCollection<string>(fabric.Composition);
         }
 
         public CreateFabricViewModel(FabricRepository fabricRepository, DialogView<CreateFabricViewModel> view)
@@ -107,7 +107,7 @@ namespace KT_1.ViewModel.Dialogs
 
         private void Create(object obj)
         {
-            var fabric = new Fabric(Articul, Name, (double)Width, (double)Height, (double)Price, Composition);
+            var fabric = new Fabric(Articul, Name, (double)Width, (double)Height, (Decimal)Price, Composition);
             if (m_Fabric != null)
             {
                 m_FabricRepository.Replace(m_Fabric, fabric);
@@ -139,7 +139,7 @@ namespace KT_1.ViewModel.Dialogs
         private double? m_Width;
         private double? m_Height;
         private string m_Texture;
-        private double? m_Price;
+        private Decimal? m_Price;
         private string m_Articul;
         private string m_Name;
         private ObservableCollection<string> m_Composition;

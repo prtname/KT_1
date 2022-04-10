@@ -4,9 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KT_1.View"
+        xmlns:controls="clr-namespace:KT_1.View.UserControls"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <controls:NavigationBar x:Name="NavBar" Grid.Column="0" Items="{Binding MenuItems}" ></controls:NavigationBar>
+        <Frame NavigationUIVisibility="Hidden" x:Name="PageFrame" Grid.Column="1" Source="{Binding ElementName=NavBar, Path=SelectedPageUri}"></Frame>
     </Grid>
 </Window>

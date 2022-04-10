@@ -15,11 +15,11 @@ namespace KT_1.Model
         public string ProcessStatus { get; set; }
         public User Customer { get; set; }
         public User Manager { get; set; }
-        public double Price { get; set; }
+        public Decimal Price { get; set; }
 
 
         public Order(int id, Product product, int numberOfProducts, DateTime date, 
-            string processStatus, User customer, User manager, double price)
+            string processStatus, User customer, User manager, Decimal price)
         {
             Id = id;
             Product = product;

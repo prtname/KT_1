@@ -25,6 +25,8 @@ namespace KT_1.View
             DataContext = viewModel;
 
             InitializeComponent();
+
+            PageFrame.Navigated += viewModel.Page_Navigated;
         }
     }
 }

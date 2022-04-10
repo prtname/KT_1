@@ -56,16 +56,18 @@ namespace KT_1.ViewModel.Dialogs
                 OnPropertyChanged("Height");
             }
         }
-        public string Texture
+
+        public double? Weight
         {
-            get { return m_Texture; }
+            get { return m_Weight; }
             set
             {
-                m_Texture = value;
-                OnPropertyChanged("Texture");
+                m_Weight = value;
+                OnPropertyChanged("Weight");
             }
         }
-        public double? Price
+
+        public Decimal? Price
         {
             get { return m_Price; }
             set
@@ -90,7 +92,6 @@ namespace KT_1.ViewModel.Dialogs
             m_Type = accessory.Type;
             m_Width = accessory.Width;
             m_Height = accessory.Height;
-            m_Texture = accessory.Texture;
             m_Price = accessory.Price;
         }
 
@@ -100,6 +101,7 @@ namespace KT_1.ViewModel.Dialogs
 
             m_CreateCommand = new RelayCommand(CanCreate, Create);
             m_CloseCommand = new RelayCommand((param) => m_View.CloseDialog(false));
+            m_View = view;
         }
 
         private bool CanCreate(object param)
@@ -107,7 +109,6 @@ namespace KT_1.ViewModel.Dialogs
             if (string.IsNullOrWhiteSpace(Articul) || 
                 string.IsNullOrWhiteSpace(Name) ||
                 string.IsNullOrWhiteSpace(Type) ||
-                string.IsNullOrWhiteSpace(Texture) ||
                 Width == null ||
                 Height == null ||
                 Price == null)
@@ -118,7 +119,7 @@ namespace KT_1.ViewModel.Dialogs
         }
         private void Create(object param)
         {
-            var accessory = new Accessory(Articul, Name, Type, (double)Width, (double)Height, Texture, (double)Price);
+            var accessory = new Accessory(Articul, (double)Weight, Name, Type, (double)Width, (double)Height, (Decimal)Price);
             if (m_Accessory != null)
             {
                 m_AccessoryRepository.Replace(m_Accessory, accessory);
@@ -135,8 +136,7 @@ namespace KT_1.ViewModel.Dialogs
         private string m_Type;
         private double? m_Width;
         private double? m_Height;
-        private string m_Texture;
-        private double? m_Price;
+        private Decimal? m_Price;
 
         private RelayCommand m_CreateCommand;
         private RelayCommand m_CloseCommand;
@@ -145,5 +145,6 @@ namespace KT_1.ViewModel.Dialogs
         private Accessory m_Accessory;
 
         private DialogView<CreateAccessoryViewModel> m_View;
+        private double? m_Weight;
     }
 }

@@ -42,7 +42,7 @@ namespace KT_1.ViewModel.Dialogs
                 OnPropertyChanged("SelectedManager");
             }
         }
-        public double Price
+        public Decimal Price
         {
             get { return m_Price; }
             private set
@@ -92,12 +92,12 @@ namespace KT_1.ViewModel.Dialogs
         {
             if (SelectedProduct == null || Number == null) return;
 
-            double accessoriesPrice = 0;
+            Decimal accessoriesPrice = 0;
             foreach (var accessory in SelectedProduct.Accessories)
             {
                 accessoriesPrice += accessory.Accessory.Price;
             }
-            double fabricsPrice = 0;
+            Decimal fabricsPrice = 0;
             foreach (var fabric in SelectedProduct.Fabrics)
             {
                 fabricsPrice += fabric.Price;
@@ -129,7 +129,7 @@ namespace KT_1.ViewModel.Dialogs
             return true;
         }
 
-        private double m_Price;
+        private Decimal m_Price;
         private int? m_Number;
         public IEnumerable<Product> m_Products;
         public IEnumerable<User> m_Managers;
